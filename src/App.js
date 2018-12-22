@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import * as BooksAPI from './BooksAPI';
+import * as BooksAPI from './utils/BooksAPI';
 import './App.css';
-import Header from './Header';
-import ListShelves from './ListShelves';
+import Header from './home/Header';
+import ListShelves from './home/ListShelves';
 
 const bookShelves = [
   {
