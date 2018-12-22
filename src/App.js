@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI';
 import './App.css';
 import Header from './Header';
 import ListShelves from './ListShelves';
@@ -33,6 +33,19 @@ class BooksApp extends Component {
     });
   }
 
+  onMove = (id, target) => {
+    BooksAPI.update({ id }, target).then(() => {
+      const books = [...this.state.books];
+      const book = books.find(bk => bk.id === id);
+      if(book) {
+        book.shelf = target;
+        this.setState({
+          books
+        });
+      }
+    });
+  };
+
   render() {
     return (
       <div className="app">
@@ -64,7 +77,11 @@ class BooksApp extends Component {
         ) : (
           <div className="list-books">
             <Header />
-            <ListShelves bookShelves={bookShelves} books={this.state.books}/>
+            <ListShelves
+              bookShelves={bookShelves}
+              books={this.state.books}
+              onMove={this.onMove}
+            />
             <div className="open-search">
               <button onClick={() => this.setState({ showSearchPage: true })}>
                 Add a book

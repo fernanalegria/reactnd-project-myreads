@@ -19,6 +19,7 @@ const ListShelves = props => {
             activeShelf={shelf}
             bookShelves={array}
             books={booksByShelf[shelf.value]}
+            onMove={props.onMove}
           />
         ))}
       </div>

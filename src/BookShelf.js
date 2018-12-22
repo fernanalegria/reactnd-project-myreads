@@ -3,9 +3,9 @@ import Book from './Book';
 
 const BookShelf = props => {
   const { activeShelf, bookShelves, books } = props;
-  const compactShelves = bookShelves.slice(0);
+  const compactShelves = [...bookShelves];
   compactShelves.forEach(shelf => {
-      shelf.active = shelf.value === activeShelf.value;
+    shelf.active = shelf.value === activeShelf.value;
   });
 
   return (
@@ -15,7 +15,11 @@ const BookShelf = props => {
         <ol className="books-grid">
           {books.map(book => (
             <li key={book.id}>
-              <Book book={book} bookShelves={compactShelves} />
+              <Book
+                book={book}
+                bookShelves={compactShelves}
+                onMove={props.onMove}
+              />
             </li>
           ))}
         </ol>

@@ -6,9 +6,14 @@ class BookShelfChanger extends Component {
   };
 
   handleChange = event => {
-    this.setState({
-      value: event.target.value
-    });
+    this.setState(
+      {
+        value: event.target.value
+      },
+      () => {
+        this.props.onMove(this.state.value);
+      }
+    );
   };
 
   render() {
@@ -20,7 +25,9 @@ class BookShelfChanger extends Component {
             Move to...
           </option>
           {bookShelves.map(shelf => (
-            <option key={shelf.value} value={shelf.value}>{shelf.title}</option>
+            <option key={shelf.value} value={shelf.value}>
+              {shelf.title}
+            </option>
           ))}
           <option value="none">None</option>
         </select>
