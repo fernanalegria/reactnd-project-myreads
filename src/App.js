@@ -33,12 +33,23 @@ class BooksApp extends Component {
     });
   }
 
-  onMove = (id, target) => {
+  onMove = (id, origin, target) => {
     BooksAPI.update({ id }, target).then(() => {
-      const books = [...this.state.books];
-      const book = books.find(bk => bk.id === id);
-      if (book) {
-        book.shelf = target;
+      if (origin === 'none') {
+        BooksAPI.get(id).then(book => {
+          this.setState(prevState => ({
+            books: [...prevState.books, book]
+          }));
+        });
+      } else {
+        let books = [...this.state.books];
+        if (target === 'none') {
+          const bookIndex = books.findIndex(bk => bk.id === id);
+          books.splice(bookIndex, 1);
+        } else {
+          const book = books.find(bk => bk.id === id);
+          book.shelf = target;
+        }
         this.setState({
           books
         });
@@ -47,6 +58,7 @@ class BooksApp extends Component {
   };
 
   render() {
+    const { books } = this.state;
     return (
       <div className="app">
         <Route
@@ -55,12 +67,21 @@ class BooksApp extends Component {
           render={() => (
             <Home
               bookShelves={bookShelves}
-              books={this.state.books}
+              books={books}
               onMove={this.onMove}
             />
           )}
         />
-        <Route path="/search" render={() => <SearchBooks />} />
+        <Route
+          path="/search"
+          render={() => (
+            <SearchBooks
+              bookShelves={bookShelves}
+              selectedBooks={books}
+              onMove={this.onMove}
+            />
+          )}
+        />
       </div>
     );
   }

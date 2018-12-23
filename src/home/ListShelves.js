@@ -16,7 +16,7 @@ const ListShelves = props => {
         {props.bookShelves.map((shelf, index, array) => (
           <BookShelf
             key={shelf.value}
-            activeShelf={shelf}
+            title={shelf.title}
             bookShelves={array}
             books={booksByShelf[shelf.value]}
             onMove={props.onMove}
