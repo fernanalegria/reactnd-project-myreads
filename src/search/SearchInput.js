@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { debounce } from '../utils/AppUtils';
+import PropTypes from 'prop-types';
 
 class SearchInput extends Component {
+  static propTypes = {
+    search: PropTypes.func.isRequired
+  };
+
   state = {
     query: ''
   };
@@ -13,7 +18,6 @@ class SearchInput extends Component {
       },
       () => {
         debounce(() => {
-          console.log(this.state.query);
           this.props.search(this.state.query);
         }, 500)();
       }
