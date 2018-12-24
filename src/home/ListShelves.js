@@ -2,6 +2,9 @@ import React from 'react';
 import BookShelf from './BookShelf';
 import PropTypes from 'prop-types';
 
+/**
+ * List of shelves where the user can classify books
+ */
 const ListShelves = props => {
   const { bookShelves, books, onMove } = props;
   const booksByShelf = {};
@@ -30,12 +33,16 @@ const ListShelves = props => {
 };
 
 ListShelves.propTypes = {
+  /** Array of the existing shelves to classify books */
   bookShelves: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired
     })
   ).isRequired,
+  /** Array of book objects,
+   * with all the necessary info to display and move them from one shelf to another 
+   */
   books: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -47,6 +54,7 @@ ListShelves.propTypes = {
       shelf: PropTypes.string.isRequired
     })
   ).isRequired,
+  /** Function to move books from one shelf to another */
   onMove: PropTypes.func.isRequired
 };
 

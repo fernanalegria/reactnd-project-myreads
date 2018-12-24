@@ -4,11 +4,18 @@ import SearchResults from './SearchResults';
 import * as BooksAPI from '..//utils/BooksAPI';
 import PropTypes from 'prop-types';
 
+/**
+ * Page to look for (new and existing) books
+ */
 class SearchBooks extends Component {
   state = {
     results: []
   };
 
+  /**
+   * Send the query typed by the user to the API and refreshes the state with the new results
+   * @param  {string} query
+   */
   search = query => {
     if (query) {
       BooksAPI.search(query).then(queryBooks => {
@@ -55,12 +62,14 @@ class SearchBooks extends Component {
 }
 
 SearchBooks.propTypes = {
+  /** Array of the existing shelves to classify books */
   bookShelves: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired
     })
   ).isRequired,
+  /** Array of already classified book objects */
   selectedBooks: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
@@ -72,6 +81,7 @@ SearchBooks.propTypes = {
       shelf: PropTypes.string.isRequired
     })
   ).isRequired,
+  /** Function to move books from one shelf to another */
   onMove: PropTypes.func.isRequired
 };
 

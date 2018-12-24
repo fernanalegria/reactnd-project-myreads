@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import BookInterface from './BookInterface';
 import PropTypes from 'prop-types';
 
+/**
+ * Book entity, which contains its cover, title and authors and the classification picker
+ */
 class Book extends Component {
   static propTypes = {
+    /** Book object with all the necessary info about it */
     book: PropTypes.shape({
       title: PropTypes.string.isRequired,
       authors: PropTypes.arrayOf(PropTypes.string),
@@ -13,6 +17,7 @@ class Book extends Component {
       id: PropTypes.string.isRequired,
       shelf: PropTypes.string.isRequired
     }).isRequired,
+    /** Array of the existing shelves to classify books */
     bookShelves: PropTypes.arrayOf(
       PropTypes.shape({
         value: PropTypes.string.isRequired,
@@ -21,6 +26,11 @@ class Book extends Component {
     ).isRequired
   };
 
+  /**
+   * Calls the callback function onMove with the incoming origin and target shelves and adds the book id
+   * @param  {string} origin
+   * @param  {string} target
+   */
   onMove = (origin, target) => {
     this.props.onMove(this.props.book.id, origin, target);
   };

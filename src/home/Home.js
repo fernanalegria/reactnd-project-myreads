@@ -4,6 +4,9 @@ import ListShelves from './ListShelves';
 import AddButton from '../common/AddButton';
 import PropTypes from 'prop-types';
 
+/**
+ * Main page
+ */
 const Home = props => {
   const { bookShelves, books, onMove } = props;
   return (
@@ -16,12 +19,16 @@ const Home = props => {
 };
 
 Home.propTypes = {
+  /** Array of the existing shelves to classify books */
   bookShelves: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired
     })
   ).isRequired,
+  /** Array of book objects,
+   * with all the necessary info to display and move them from one shelf to another 
+   */
   books: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -33,6 +40,7 @@ Home.propTypes = {
       shelf: PropTypes.string.isRequired
     })
   ).isRequired,
+  /** Function to move books from one shelf to another */
   onMove: PropTypes.func.isRequired
 };
 

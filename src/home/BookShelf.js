@@ -2,6 +2,9 @@ import React from 'react';
 import Book from '../common/Book';
 import PropTypes from 'prop-types';
 
+/**
+ * Shelf containing books from a specific category
+ */
 const BookShelf = props => {
   const { title, bookShelves, books, onMove } = props;
 
@@ -22,13 +25,18 @@ const BookShelf = props => {
 };
 
 BookShelf.propTypes = {
+  /** Bookshelf title */
   title: PropTypes.string.isRequired,
+  /** Array of the existing shelves to classify books */
   bookShelves: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired
     })
   ).isRequired,
+  /** Array of book objects from a specific shelf,
+   * with all the necessary info to display and move them from one shelf to another 
+   */
   books: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -40,6 +48,7 @@ BookShelf.propTypes = {
       shelf: PropTypes.string.isRequired
     })
   ).isRequired,
+  /** Function to move books from one shelf to another */
   onMove: PropTypes.func.isRequired
 };
 
