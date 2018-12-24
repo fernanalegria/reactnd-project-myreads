@@ -6,7 +6,9 @@ const BookInterface = props => {
   const { book, bookShelves, onMove } = props;
   return (
     <div className="book-top">
-      <BookCover coverURL={book.imageLinks ? book.imageLinks.smallThumbnail : ''} />
+      <BookCover
+        coverURL={book.imageLinks ? book.imageLinks.smallThumbnail : ''}
+      />
       <BookShelfChanger
         bookShelves={bookShelves}
         shelf={book.shelf}

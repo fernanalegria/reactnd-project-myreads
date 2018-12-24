@@ -41,7 +41,11 @@ class SearchBooks extends Component {
 
   render() {
     return (
-      <div className="search-books">
+      <div
+        className={`search-books ${
+          this.state.results.length === 0 ? 'empty-results' : ''
+        }`}
+      >
         <SearchBar search={this.search} />
         <SearchResults
           books={this.state.results}
