@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { debounce } from '../utils/AppUtils';
 
 class SearchInput extends Component {
   state = {
@@ -11,7 +12,10 @@ class SearchInput extends Component {
         query: event.target.value
       },
       () => {
-        this.props.search(this.state.query);
+        debounce(() => {
+          console.log(this.state.query);
+          this.props.search(this.state.query);
+        }, 500)();
       }
     );
   };
