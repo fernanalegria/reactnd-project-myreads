@@ -1,5 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+/**
+ * Book cover displayed in a thumbnail
+ */
 const BookCover = props => {
   const { coverURL } = props;
   const noCoverURL =
@@ -14,6 +18,11 @@ const BookCover = props => {
       }}
     />
   );
+};
+
+BookCover.propTypes = {
+  /** URL hosting the cover thumbnail */
+  coverURL: PropTypes.string
 };
 
 export default BookCover;
