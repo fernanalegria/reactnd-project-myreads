@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import BookInterface from './BookInterface';
 
 class Book extends Component {
-  onMove = target => {
-    this.props.onMove(this.props.book.id, target);
+  onMove = (origin, target) => {
+    this.props.onMove(this.props.book.id, origin, target);
   };
 
   render() {
@@ -11,7 +11,7 @@ class Book extends Component {
     return (
       <div className="book">
         <BookInterface
-          coverURL={book.imageLinks.thumbnail}
+          book={book}
           bookShelves={bookShelves}
           onMove={this.onMove}
         />

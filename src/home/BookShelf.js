@@ -2,22 +2,18 @@ import React from 'react';
 import Book from '../common/Book';
 
 const BookShelf = props => {
-  const { activeShelf, bookShelves, books } = props;
-  const compactShelves = [...bookShelves];
-  compactShelves.forEach(shelf => {
-    shelf.active = shelf.value === activeShelf.value;
-  });
+  const { title, bookShelves, books } = props;
 
   return (
     <div className="bookshelf">
-      <h2 className="bookshelf-title">{activeShelf.title}</h2>
+      <h2 className="bookshelf-title">{title}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
           {books.map(book => (
             <li key={book.id}>
               <Book
                 book={book}
-                bookShelves={compactShelves}
+                bookShelves={bookShelves}
                 onMove={props.onMove}
               />
             </li>
