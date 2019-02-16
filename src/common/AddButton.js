@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { rootUrl } from '../index';
 
 /**
  * Button that redirects to search page
  */
 const AddButton = () => (
   <div className="open-search">
-    <Link to="/search">Add a book</Link>
+    <Link to={`${rootUrl}/search`}>Add a book</Link>
   </div>
 );
 

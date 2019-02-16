@@ -4,6 +4,8 @@ import App from './App';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 
+export const rootUrl = '/reactnd-project-myreads';
+
 ReactDOM.render(
   <BrowserRouter>
     <App />

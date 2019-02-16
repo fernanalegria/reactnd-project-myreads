@@ -4,6 +4,7 @@ import './App.css';
 import { Route } from 'react-router-dom';
 import SearchBooks from './search/SearchBooks';
 import Home from './home/Home';
+import { rootUrl } from './index';
 
 const bookShelves = [
   {
@@ -63,7 +64,7 @@ class BooksApp extends Component {
       <div className="app">
         <Route
           exact
-          path="/"
+          path={rootUrl}
           render={() => (
             <Home
               bookShelves={bookShelves}
@@ -73,7 +74,7 @@ class BooksApp extends Component {
           )}
         />
         <Route
-          path="/search"
+          path={`${rootUrl}/search`}
           render={() => (
             <SearchBooks
               bookShelves={bookShelves}
